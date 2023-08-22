@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Check out the source code from your version control system (e.g., Git)
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Build your project (e.g., compile code, generate artifacts)
+                sh 'your-build-command-here'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                // Run tests (e.g., unit tests, integration tests)
+                sh 'your-test-command-here'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Deploy your application (e.g., to a server, container, or cloud)
+                sh 'your-deploy-command-here'
+            }
+        }
+    }
+    
+    post {
+        // Define post-build actions, such as sending notifications or cleaning up
+        always {
+            // This block will always run, regardless of the pipeline outcome
+        }
+        success {
+            // This block will run only if the pipeline succeeds
+        }
+        failure {
+            // This block will run only if the pipeline fails
+        }
+    }
+}
